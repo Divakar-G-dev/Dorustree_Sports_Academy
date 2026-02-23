@@ -1,0 +1,123 @@
+/* ================= PAGE CONTAINER ================= */
+.student-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 90px); /* leave header space */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ================= FORM CARD ================= */
+.student-form-container {
+  width: 800px;               /* reduced from 700px */
+  max-width: 92%;
+  background: #fff;
+  padding: 20px 24px;         /* slightly reduced */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* ================= TITLE ================= */
+.student-form-container h1 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #1e3a8a;
+}
+
+/* ================= FORM ROW ================= */
+.form-row {
+  display: flex;
+  gap: 16px;                  /* slightly reduced gap */
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+/* ================= INPUTS ================= */
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px 10px;          /* reduced padding */
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;            /* slightly smaller */
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #1e3a8a;
+  outline: none;
+}
+
+/* ================= CHECKBOX GROUP ================= */
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* ================= ERROR STYLE ================= */
+.error-input {
+  border-color: #d93025 !important;
+}
+
+.error-text {
+  color: #d93025;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ================= TOTAL FEES ================= */
+.total-fees {
+  margin-top: 8px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ================= SUBMIT BUTTON ================= */
+button[type="submit"] {
+  width: 200px;              /* reduced from 220px */
+  background-color: #1e3a8a;
+  color: white;
+  padding: 10px 0;           /* slightly reduced */
+  font-size: 15px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  margin: 18px auto 0 auto;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #2847c4;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  .student-form-container {
+    position: relative;   /* important for mobile scrolling */
+    width: 95%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}

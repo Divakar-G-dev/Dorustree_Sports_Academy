@@ -1,0 +1,77 @@
+/* ========================= */
+/* HEADER */
+.head-section {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Header content row */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left side: title + subtitle */
+.head-left h1 {
+  margin: 0;
+  color: #1e3a8a;
+  cursor: pointer;
+}
+
+.head-left .head-below {
+  color: gray;
+  margin: 4px 0 0 0;
+  font-size: 14px;
+}
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Student info - horizontal */
+.admin-info {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+.admin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.admin-name {
+  display: inline-block;
+  margin-top: 3px;
+}
+
+/* Logout button */
+.logout {
+  padding: 5px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.logout:hover {
+  background-color: #0056b3;
+}

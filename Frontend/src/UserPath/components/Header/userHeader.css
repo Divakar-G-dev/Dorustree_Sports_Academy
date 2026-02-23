@@ -1,0 +1,76 @@
+.user-head-section {
+  top: 0;
+  left: 70px; 
+  width: calc(100% - 70px);
+  background-color: #f8f9fa;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Header row */
+.user-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left side: title + subtitle */
+.user-head-left h1 {
+  margin: 0;
+  color: #1e3a8a;
+  cursor: pointer;
+}
+
+.user-head-left .user-head-below {
+  color: gray;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Right side container */
+.user-header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Student info - horizontal */
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+.student-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.student-name {
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Logout button */
+.logout {
+  padding: 5px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.logout:hover {
+  background-color: #0056b3;
+}

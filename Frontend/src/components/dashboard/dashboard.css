@@ -1,0 +1,215 @@
+.dashboard-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* ===== TOP CARDS GRID ===== */
+.grid {
+  display: flex;
+  gap: 15px;
+  margin: 15px 20px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.box {
+  flex: 1 1 calc(25% - 15px);
+  min-width: 160px;              /* 🔥 Slightly wider */
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 0.8rem 1.2rem;        /* 🔥 More padding */
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.box-left {
+  width: 65px;                   /* 🔥 Slightly wider */
+  height: 60px;
+  font-size: 1.1rem !important;  /* 🔥 Smaller & fits */
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  margin-right: 1rem;
+  color: white;
+  flex-shrink: 0;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.box-right h2 {
+  font-size: 0.95rem;            /* 🔥 Slightly smaller */
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.leftdash {
+  flex: 1 1 60%;
+  min-width: 250px;
+}
+
+.rightdash {
+  flex: 1 1 35%;
+  min-width: 200px;
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* 🔥 SMALL DASHBOARD STUDENT TABLE */
+.dashboard-student-table {
+  max-height: 350px;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+}
+
+.dashboard-student-table .student-table {
+  font-size: 13px !important;  /* Smaller font */
+  border-radius: 8px;
+}
+
+.dashboard-student-table .student-table th {
+  padding: 8px 6px !important;  /* Smaller padding */
+  font-size: 12px !important;
+}
+
+.dashboard-student-table .student-table td {
+  padding: 8px 6px !important;  /* Smaller padding */
+  font-size: 12px !important;
+  height: 45px;  /* Fixed row height */
+}
+
+.dashboard-student-table .student-table tbody tr:hover {
+  background: #f0f7ff !important;
+}
+
+/* Section titles */
+.dash-section-title {
+  text-align: center;
+  margin: 10px 0;
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.total-fees-title {
+  margin: 20px 0 15px 0;
+  font-weight: 700;
+  color: #1d4ed8;
+  font-size: 16px;
+}
+
+.view-all-btn {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.view-all-btn button {
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: #1e3a8a;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.view-all-btn button:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+/* ===== FEES TABLE ===== */
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.fees-table th,
+.fees-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.fees-table th {
+  text-align: left;
+  background-color: #dbeafe;
+  font-weight: 600;
+}
+
+.fees-table td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.fees-table .cfees {
+  text-align: right;
+}
+
+.color-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.loading-state {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 18px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .box-left {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .grid {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .box {
+    flex: 1 1 100%;
+  }
+  .dashboard-student-table .student-table th,
+  .dashboard-student-table .student-table td {
+    padding: 6px 4px !important;
+    font-size: 11px !important;
+  }
+}

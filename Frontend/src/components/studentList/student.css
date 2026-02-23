@@ -1,0 +1,91 @@
+.student-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 40px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.student-table th {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  padding: 14px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.student-table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: center;
+  font-size: 17px;
+  vertical-align: middle;
+  color: #374151;
+}
+
+.student-table tbody tr:hover {
+  background: #f8fafc;
+  transition: background-color 0.2s ease;
+}
+
+.student-name {
+  font-weight: 500;
+  color: #374151;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.student-name:hover {
+  background: #e2e8f0;
+}
+
+.sports-names {
+  font-weight: 500;
+  color: #374151;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.sports-names:hover {
+  background: #e2e8f0;
+}
+
+.total-fees {
+  font-weight: 700;
+  color: #374151;
+  font-size: 15px;
+}
+
+.phone-num {
+  color: #374151;
+  font-weight: 600;
+}
+
+.loading-state {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 18px;
+}
+
+.no-data {
+  text-align: center !important;
+  padding: 40px !important;
+  color: #6b7280 !important;
+  font-style: italic;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .student-table th,
+  .student-table td {
+    padding: 8px 6px;
+    font-size: 15px;
+  }
+}

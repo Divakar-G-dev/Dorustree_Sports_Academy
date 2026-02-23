@@ -2,16 +2,14 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';  
 
-// Your existing imports
 import Frontpage from "./pages/frontpage/Frontpage.jsx";
-import AppLayout from "./AppLayout.jsx";  // Admin layout
+import AppLayout from "./AppLayout.jsx";  
 import Dashboard from "./components/dashboard/Dashboard.jsx";
 import Students from "./components/studentList/Student.jsx";
 import Sports from "./components/sportsListA/Sportslist.jsx";
 import Enrollsports from "./components/enrollsports/Enrollsports.jsx";
 import UserLayout from "./UserPath/UserLayout.jsx";
 import UserProfile from "./UserPath/pages/UserProfile/UserProfile.jsx";
-
 
 import EnrolledSports from "./UserPath/pages/EnrolledSports/EnrolledSports.jsx";
 import EditSports from "./UserPath/pages/EditSports/EditSports.jsx";

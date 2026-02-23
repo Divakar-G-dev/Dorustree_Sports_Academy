@@ -2,11 +2,9 @@ package com.example.dorustreesportsacademy.controller;
 
 import com.example.dorustreesportsacademy.dto.SportDTO;
 import com.example.dorustreesportsacademy.dto.StudentDTO;
-import com.example.dorustreesportsacademy.entity.SportEntity;
 import com.example.dorustreesportsacademy.entity.StudentEntity;
 import com.example.dorustreesportsacademy.service.SportService;
 import com.example.dorustreesportsacademy.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,7 +83,6 @@ public class StudentController {
             if (dto.get("dob") != null) studentDTO.setDob((String) dto.get("dob"));
             if (dto.get("emergencyContact") != null) studentDTO.setEmergencyContact((String) dto.get("emergencyContact"));
             if (dto.get("password") != null) studentDTO.setPassword((String) dto.get("password"));
-
             List<?> sportIdsList = (List<?>) dto.get("sportIds");
             if (sportIdsList != null) {
                 Set<Long> sportIds = new HashSet<>();

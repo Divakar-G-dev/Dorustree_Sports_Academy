@@ -13,8 +13,6 @@ function Dashboard() {
   const [allSports, setAllSports] = useState([]);
   const [collectedSummary, setCollectedSummary] = useState({});
   const [loading, setLoading] = useState(true);
-
-  // ✅ REMOVED ONLY: window.history.pushState useEffect (5 lines deleted)
   
   useEffect(() => {
     async function fetchData() {
@@ -47,7 +45,7 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  // ✅ ALL EXISTING FUNCTIONALITY 100% SAME:
+  // ALL EXISTING FUNCTIONALITY 100% SAME:
   const studentOnlyCount = students.filter(student => student.role === "Student").length;
   const top5Students = students.filter(student => student.role === "Student").slice(0, 5);
 
@@ -65,7 +63,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      {/* ✅ 100% SAME JSX - Stats boxes, pie chart, table, everything! */}
+      {/*  100% SAME JSX - Stats boxes, pie chart, table, everything! */}
       <div className="grid">
         <div className="box">
           <div className="box-left" style={{ backgroundColor: "#4171c9" }}>
@@ -98,17 +96,17 @@ function Dashboard() {
 
         <div className="box">
           <div className="box-left" style={{ backgroundColor: "#ff4d4d" }}>
-            ₹{totalCollected.toLocaleString("en-IN")}
+            {totalCollected.toLocaleString("en-IN")}
           </div>
           <div className="box-right">
-            <h2>Total Revenue Per Month</h2>
+            <h2>Total Revenue Per Month (₹)</h2>
           </div>
         </div>
       </div>
 
       <div className="main-content">
         <div className="leftdash">
-          <h2 className="dash-section-title">Recent Enrolled Students</h2>
+          <h2 className="dash-section-title">Enrolled Students</h2>
           <div className="dashboard-student-table"> 
             <StudentList students={top5Students} showTotalFees={true} />
           </div>

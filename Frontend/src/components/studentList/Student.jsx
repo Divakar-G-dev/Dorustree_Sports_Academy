@@ -32,7 +32,7 @@ function Student() {
 
   return (
     <div style={{ padding: "20px" }}> 
-      <h2 style={{textAlign:"center",marginBottom:"20px"}}>All Students</h2>
+      <h2 style={{textAlign:"center",marginBottom:"20px"}}>All Enrolled Students</h2>
       <StudentList students={students} showTotalFees={true} />
     </div>
   );

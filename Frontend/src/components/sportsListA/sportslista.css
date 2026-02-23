@@ -1,5 +1,5 @@
 .sportslist-container {
-  max-width: 1000px;  /* ✅ Reduced from 1200px */
+  max-width: 1000px;  /*  Reduced from 1200px */
   margin: 40px auto;
   background: #ffffff;
   border-radius: 12px;
@@ -12,7 +12,7 @@
   text-align: center;
   margin-bottom: 35px;
   color: #1e293b;
-  font-size: 32px;  /* ✅ Slightly smaller */
+  font-size: 32px;  /* Slightly smaller */
   font-weight: 600;
   letter-spacing: -0.5px;
 }
@@ -31,21 +31,21 @@
 .sportslist-table th {
   background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
-  padding: 14px 12px;  /* ✅ Smaller padding */
+  padding: 14px 12px;  /* Smaller padding */
   text-align: center;
   font-weight: 600;
-  font-size: 17px;     /* ✅ Smaller text */
+  font-size: 17px;     /* Smaller text */
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
 
 .sportslist-table td {
-  padding: 12px 12px;  /* ✅ Smaller padding */
+  padding: 12px 12px;  /*  Smaller padding */
   border-bottom: 1px solid #f1f5f9;
   text-align: center;
-  font-size: 17px;     /* ✅ Smaller text */
+  font-size: 17px;     /*  Smaller text */
   vertical-align: middle;
-  color: #374151;      /* ✅ Uniform dark gray color */
+  color: #374151;      /*  Uniform dark gray color */
 }
 
 .sportslist-table tbody tr:hover {
@@ -55,11 +55,11 @@
 
 .sport-name {
   cursor: pointer;
-  padding: 4px 8px;    /* ✅ Smaller padding */
+  padding: 4px 8px;    /*  Smaller padding */
   border-radius: 6px;
   transition: all 0.2s ease;
   font-weight: 500;
-  color: #374151;      /* ✅ Same dark gray */
+  color: #374151;      /*  Same dark gray */
 }
 
 .sport-name:hover {
@@ -73,25 +73,25 @@
 }
 
 .timing {
-  color: #374151;      /* ✅ Same dark gray */
+  color: #374151;      /*  Same dark gray */
   font-weight: 600;
 }
 
 .fees {
   font-weight: 700;
-  color: #374151;      /* ✅ Same dark gray */
+  color: #374151;      /*  Same dark gray */
   font-size: 15px;
 }
 
 .delete-btn {
-  background: #f87171;  /* ✅ ONLY delete button colored */
+  background: #f87171;  /*  ONLY delete button colored */
   color: white;
   border: none;
-  padding: 6px 12px;   /* ✅ Smaller padding */
+  padding: 6px 12px;   /*  Smaller padding */
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;     /* ✅ Smaller text */
+  font-size: 13px;     /*  Smaller text */
   transition: all 0.2s ease;
 }
 
@@ -117,12 +117,12 @@
   font-weight: 600;
 }
 
-/* ✅ HORIZONTAL LAYOUT - Add Sport button with inputs */
+/*  HORIZONTAL LAYOUT - Add Sport button with inputs */
 .add-sport-form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;  /* ✅ 4 equal columns */
+  grid-template-columns: 1fr 1fr 1fr 1fr;  /*  4 equal columns */
   gap: 20px;
-  align-items: end;          /* ✅ Aligns button to bottom */
+  align-items: end;          /*  Aligns button to bottom */
   max-width: 900px;
   margin: 0 auto;
 }
@@ -166,16 +166,16 @@
 .add-sport-btn {
   
   color: white;
-  padding: 16px 24px;     /* ✅ Slightly smaller */
+  padding: 16px 24px;     /* Slightly smaller */
   border: none;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 15px;        /* ✅ Smaller text */
+  font-size: 15px;        /*  Smaller text */
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  height: 52px;           /* ✅ Matches input height */
+  height: 52px;           /*  Matches input height */
 }
 
 .add-sport-btn:hover:not(:disabled) {
@@ -198,7 +198,7 @@
   }
   
   .add-sport-form {
-    grid-template-columns: 1fr;  /* ✅ Mobile stacks vertically */
+    grid-template-columns: 1fr;  /*  Mobile stacks vertically */
     gap: 16px;
   }
 }

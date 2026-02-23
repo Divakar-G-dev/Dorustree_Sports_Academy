@@ -50,3 +50,16 @@
 .nav-item.active {
   background-color: #1e4fa3;
 }
+
+.navbar {
+  width: 70px;
+  min-width: 70px;
+  height: 100vh;  /* Always full viewport height */
+  background-color: #2a6db4;
+  /* ... rest same ... */
+}
+
+
+
+
+

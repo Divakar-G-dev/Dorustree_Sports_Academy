@@ -46,7 +46,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #333;
-  margin-top: 10px;
+  gap: 2px;
 }
 
 .admin-icon {
@@ -58,7 +58,7 @@
 
 .admin-name {
   display: inline-block;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 /* Logout button */

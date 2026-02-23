@@ -7,8 +7,6 @@ const Sportslist = () => {
   const [newSport, setNewSport] = useState({ name: "", fees: "", timing: "" });
   const [selectedSports, setSelectedSports] = useState([]);
 
-  
-
   // LOAD SPORTS
   const fetchSports = async () => {
     try {
@@ -53,13 +51,13 @@ const Sportslist = () => {
       return;
     }
 
-    // 🔥 TIMING FORMAT VALIDATION
+    //  TIMING FORMAT VALIDATION
     if (!validateTimingFormat(newSport.timing)) {
       alert(`Invalid timing format!\n\nUse format like: "6:00 AM - 7:30 AM"\nor "7.30 AM - 9.00 AM"`);
       return;
     }
 
-    // 🔥 TIME CONFLICT CHECK
+    //  TIME CONFLICT CHECK
     if (checkTimeConflict(newSport.timing)) {
       const conflictingSport = sports.find(sport => sport.timing === newSport.timing);
       alert(`Cannot add "${newSport.name}"!\n\nTime ${newSport.timing} already used by:\n"${conflictingSport.name}"`);

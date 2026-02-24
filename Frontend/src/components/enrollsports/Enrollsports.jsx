@@ -47,7 +47,6 @@ function EnrollSports({ setStudents }) {
       .trim();
   };
 
-  //time conflict
   const handleSportChange = (sportId) => {
     const sport = sportsList.find(s => s.id === sportId);
     
@@ -148,7 +147,7 @@ function EnrollSports({ setStudents }) {
       <form className="student-form-container" onSubmit={handleSubmit}>
         <h1>Enrollment Form</h1>
 
-        {/* Row 1 */}
+ 
         <div className="form-row">
           <div className="form-group">
             <label>First Name*</label>
@@ -162,11 +161,25 @@ function EnrollSports({ setStudents }) {
           </div>
         </div>
 
-        {/* Row 2 */}
+     
         <div className="form-row">
           <div className="form-group">
             <label>Email*</label>
-            <input type="email" name="email" value={form.email} onChange={handleChange} className={errors.email ? "error-input" : ""} />
+            <input type="email" 
+            style={{
+                  width: "100%",
+                  height: "1px",           
+                  padding: "12px 16px",     
+                  fontSize: "16px",
+                  border: "2px solid #e5e7eb",
+                  borderRadius: "8px",
+                  boxSizing: "border-box",
+                  background: "#fafbfc",
+                  appearance: "none",
+                  WebkitAppearance: "none",
+                  MozAppearance: "none"
+                }}
+            name="email" value={form.email} onChange={handleChange} className={errors.email ? "error-input" : ""} />
             {errors.email && <span className="error-text">{errors.email}</span>}
           </div>
         </div>
@@ -177,7 +190,7 @@ function EnrollSports({ setStudents }) {
             {errors.dob && <span className="error-text">{errors.dob}</span>}
           </div>
 
-        {/* Row 3 */}
+       
           <div className="form-group">
             <label>Phone*</label>
             <input type="tel" name="phone" value={form.phone} onChange={handleChange} className={errors.phone ? "error-input" : ""} />
@@ -191,7 +204,7 @@ function EnrollSports({ setStudents }) {
             {errors.parentName && <span className="error-text">{errors.parentName}</span>}
           </div>
 
-        {/* Row 4 */}
+       
           <div className="form-group">
             <label>Emergency Contact*</label>
             <input type="tel" name="emergencyContact" value={form.emergencyContact} onChange={handleChange} className={errors.emergencyContact ? "error-input" : ""} />
@@ -205,7 +218,6 @@ function EnrollSports({ setStudents }) {
             {errors.password && <span className="error-text">{errors.password}</span>}
           </div>
 
-        {/* Row 5 */}
           <div className="form-group">
             <label>Confirm Password*</label>
             <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} className={errors.confirmPassword ? "error-input" : ""} />
@@ -213,10 +225,10 @@ function EnrollSports({ setStudents }) {
           </div>
         </div>
 
-        {/* Sports Selection */}
+       
         <div className="form-group">
           <label>Select Sports* (One per time slot only)</label>
-          <div style={{ display:"flex", flexWrap:"wrap", gap:"12px", marginTop:"8px" }}>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:"12px", marginTop:"4px" }}>
             {sportsList.map(sport => (
               <label key={sport.id} style={{ display:"flex", alignItems:"center", gap:"6px" }}>
                 <input 
@@ -231,14 +243,14 @@ function EnrollSports({ setStudents }) {
           {errors.sports && <span className="error-text">{errors.sports}</span>}
         </div>
 
-        {/* Total Fees */}
+        
         {form.sports.length > 0 && (
           <div style={{ marginTop:"10px", fontWeight:"bold", textAlign:"center" }}>
             Total Fees: ₹{totalFees.toLocaleString("en-IN")}
           </div>
         )}
 
-        <button type="submit">Register</button>
+        <button type="submit" className="reg-btn">Register</button>
       </form>
     </div>
   );

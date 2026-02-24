@@ -87,7 +87,7 @@ select:focus {
 }
 
 /* ================= SUBMIT BUTTON ================= */
-button[type="submit"] {
+.reg-btn[type="submit"] {
   width: 200px;              /* reduced from 220px */
   background-color: #1e3a8a;
   color: white;

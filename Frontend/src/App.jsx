@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Frontpage />} />
           
-          {/* ✅ ADMIN WITH LAYOUT */}
+         
           <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
@@ -32,7 +32,7 @@ function App() {
             </Route>
           </Route>
 
-          {/* ✅ STUDENT WITH LAYOUT */}
+          
           <Route element={<ProtectedRoute allowedRoles={["Student", "Admin"]} />}>
             <Route path="/user" element={<UserLayout />}>
               <Route index element={<UserProfile />} />

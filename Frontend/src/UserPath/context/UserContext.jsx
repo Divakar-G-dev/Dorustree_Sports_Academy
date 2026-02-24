@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
     const newData = { ...studentData, ...data, loading: false };
     setStudentData(newData);
     sessionStorage.setItem('studentData', JSON.stringify(newData));
-    console.log("Context updated:", newData); // ✅ DEBUG
+    console.log("Context updated:", newData); //  DEBUG
   };
 
   const clearStudentData = () => {

@@ -114,18 +114,42 @@ function Frontpage() {
       <div className="login-card">
         <form onSubmit={handleEmailLogin}>
           <div className="form-group">
-            <label>Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-            />
+            <label >Email</label>
+            <input
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  required
+  style={{
+    width: "100%",
+    height: "1px",           // match password height
+    padding: "12px 16px",     // vertical + horizontal padding
+    fontSize: "16px",
+    border: "2px solid #e5e7eb",
+    borderRadius: "8px",
+    boxSizing: "border-box",
+    background: "#fafbfc",
+    appearance: "none",
+    WebkitAppearance: "none",
+    MozAppearance: "none"
+  }}
+/>
           </div>
           
           <div className="form-group">
             <label>Password</label>
-            <input 
+            <input style={{
+    width: "100%",        
+    padding: "12px 16px",     
+    fontSize: "16px",
+    border: "2px solid #e5e7eb",
+    borderRadius: "8px",
+    boxSizing: "border-box",
+    background: "#fafbfc",
+    appearance: "none",
+    WebkitAppearance: "none",
+    MozAppearance: "none"
+  }}
               type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
@@ -136,7 +160,7 @@ function Frontpage() {
           {loginError && <div className="error-text">{loginError}</div>}
           
           <button type="submit" disabled={loading} className="login-btn">
-            {loading ? 'Logging in...' : 'Login'}
+                          {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
@@ -152,7 +176,8 @@ function Frontpage() {
             size="large"
             text="signin_with"
             shape="rectangular"
-            style={{ width: "100%", height: "56px" }}
+            className="glog"
+            style={{ width: "100%", height: "56px"}}
           />
           <p className="google-hint">Use your Google account registered with admin</p>
         </div>

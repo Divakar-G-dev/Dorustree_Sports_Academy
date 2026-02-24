@@ -45,7 +45,6 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  // ALL EXISTING FUNCTIONALITY 100% SAME:
   const studentOnlyCount = students.filter(student => student.role === "Student").length;
   const top5Students = students.filter(student => student.role === "Student").slice(0, 5);
 
@@ -63,7 +62,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      {/*  100% SAME JSX - Stats boxes, pie chart, table, everything! */}
       <div className="grid">
         <div className="box">
           <div className="box-left" style={{ backgroundColor: "#4171c9" }}>

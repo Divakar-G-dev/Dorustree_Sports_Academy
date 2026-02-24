@@ -74,14 +74,14 @@
 }
 
 .sport-label:hover {
-  border-color: #3b82f6;
+  border-color: green;
   background: #eff6ff;
   box-shadow: 0 2px 8px rgba(59,130,246,0.15);
 }
 
 .sport-item.selected .sport-label {
-  border-color: #1d4ed8;
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-color: green;
+  background-color: lightgreen;
   box-shadow: 0 4px 12px rgba(30,64,175,0.2);
 }
 
@@ -89,7 +89,7 @@
   width: 16px;
   height: 16px;
   margin-right: 12px;
-  accent-color: #1d4ed8;
+  accent-color: green;
   flex-shrink: 0;
 }
 
@@ -170,7 +170,8 @@
 
 .save-button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(29,78,216,0.4);
+  box-shadow: 0 6px 20px rgb(146, 143, 143);
+  
 }
 
 .save-button:disabled {

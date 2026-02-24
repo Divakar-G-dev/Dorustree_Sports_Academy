@@ -7,9 +7,12 @@ const UserHeader = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+      const confirmed = window.confirm("Are you sure you want to logout?");
+  if (confirmed) {
     sessionStorage.removeItem('studentData');
     sessionStorage.removeItem('authToken');
     window.location.href = "/";
+  }
   };
 
   return (

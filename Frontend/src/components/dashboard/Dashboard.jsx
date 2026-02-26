@@ -48,7 +48,7 @@ function Dashboard() {
   const studentOnlyCount = students.filter(student => student.role === "Student").length;
   const top5Students = students.filter(student => student.role === "Student").slice(0, 5);
 
-  const chartArray = Object.entries(collectedSummary).map(([name, value]) => ({
+  const chartArray = Object.entries(collectedSummary).map(([name, value]) => ({ //setCollected(feespersport {*is a object8}) covert to object
     name,
     value,
   }));

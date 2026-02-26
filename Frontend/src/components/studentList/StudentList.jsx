@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";  // ✅ ADD useEffect
+import React, { useEffect } from "react"; 
 import "./student.css";
-
 
 const StudentList = ({ students = [], showTotalFees = false }) => {
   const filteredStudents = students.filter(student => student.role === "Student");

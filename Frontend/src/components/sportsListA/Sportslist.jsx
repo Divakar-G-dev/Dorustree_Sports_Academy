@@ -80,15 +80,6 @@ const Sportslist = () => {
     }
   };
 
-  const handleSportSelect = (sportName) => {
-    setSelectedSports((prevSelected) => {
-      if (prevSelected.includes(sportName)) {
-        return prevSelected.filter((name) => name !== sportName);
-      } else {
-        return [...prevSelected, sportName];
-      }
-    });
-  };
 
   const handleDeleteSport = async (id) => {
     try {
@@ -135,8 +126,6 @@ const Sportslist = () => {
             <tr key={sport.id}>
               <td>
                 <span
-                  onClick={() => handleSportSelect(sport.name)}
-                  className={`sport-name ${selectedSports.includes(sport.name) ? 'selected' : ''}`}
                 >
                   {sport.name}
                 </span>

@@ -9,9 +9,9 @@ const UserProfile = () => {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // ALL ORIGINAL FUNCTIONALITY - NO CHANGES
+  
   useEffect(() => {
-    if (studentData?.id) {
+    if (studentData?.id) { // this is only after login that student is enrolled or not, then detials need to be viewed
       fetchStudentData();
     }
   }, [studentData?.id]);

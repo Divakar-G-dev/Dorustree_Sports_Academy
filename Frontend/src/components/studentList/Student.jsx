@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import StudentList from "./StudentList.jsx";  // ✅ FIXED .jsx
+import StudentList from "./StudentList.jsx";  // FIXED .jsx
 
 import "./student.css";
 

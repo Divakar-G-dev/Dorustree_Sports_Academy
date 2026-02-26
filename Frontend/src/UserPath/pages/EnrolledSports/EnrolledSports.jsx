@@ -6,7 +6,7 @@ const EnrolledSports = () => {
   const { studentData } = useContext(UserContext);
 
   if (studentData.loading) return <div className="loading-container">Loading sports...</div>;
-  if (!studentData.id) return <div className="loading-container">Please login to view sports.</div>;
+  if (!studentData.id) return <div className="loading-container">Loading sports...</div>;
 
   const totalFees = studentData.enrolledSports.reduce((sum, s) => sum + s.fees, 0);
 

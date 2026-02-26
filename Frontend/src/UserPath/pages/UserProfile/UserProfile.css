@@ -1,30 +1,29 @@
-/* Clean UI - Edit Button Below Table */
+/* GENERAL PAGE STYLING */
 .profile-page {
   width: 100%;
-  padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background:#fff;
+  padding: 30px 20px;
+  font-family: 'Inter', sans-serif;
+  background: white;
   box-sizing: border-box;
 }
 
 .profile-main-content {
   max-width: 900px;
   margin: 0 auto;
-  background: #fff;
+  background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.05);
   overflow: hidden;
-  margin-right: 150px;
+  padding: 0;
+   margin-right: 150px;
 }
 
+/* WELCOME SECTION */
 .welcome-section {
   width: 100%;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 50%, #1e3a8a 100%);
-  padding: 35px 40px;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  padding: 40px 35px;
   color: white;
-}
-
-.welcome-content {
   text-align: center;
 }
 
@@ -32,7 +31,6 @@
   font-size: 32px;
   font-weight: 700;
   margin: 0 0 6px 0;
-  letter-spacing: -0.02em;
 }
 
 .welcome-name {
@@ -46,61 +44,50 @@
   font-size: 16px;
   margin: 0;
   opacity: 0.9;
-  font-weight: 400;
 }
 
-/* Profile Display Section */
+/* PROFILE DISPLAY SECTION */
 .profile-display-section {
   position: relative;
-}
-
-.display-header {
-  padding: 25px 40px;
-  border-bottom: 1px solid #f0f2f5;
+  padding: 25px 35px;
 }
 
 .display-header h2 {
-  margin: 0;
+  margin: 0 0 20px 0;
   font-size: 22px;
   font-weight: 700;
   color: #1f2937;
 }
 
+/* PROFILE TABLE */
 .profile-table {
   width: 100%;
-  border-collapse: collapse;
-}
-
-.profile-table tbody tr {
-  transition: background-color 0.2s ease;
-}
-
-.profile-table tbody tr:hover {
-  background: #f8fafc;
+  border-collapse: separate;
+  border-spacing: 0 12px;
 }
 
 .label-cell {
   width: 35%;
-  padding: 20px 40px;
+  padding: 18px 20px;
   font-weight: 600;
   color: #4b5563;
   background: #f9fafb;
-  vertical-align: top;
-  font-size: 15px;
-  border-right: 1px solid #f1f5f9;
+  border-radius: 12px 0 0 12px;
 }
 
 .value-cell {
-  padding: 20px 40px;
+  padding: 18px 20px;
   color: #1f2937;
   font-weight: 600;
   font-size: 16px;
+  background: #ffffff;
+  border-radius: 0 12px 12px 0;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
 }
 
+/* EDIT BUTTON */
 .edit-action {
-  padding: 25px 40px;
-  background: #f8fafc;
-  border-top: 1px solid #f1f5f9;
+  padding: 25px 35px;
   text-align: center;
 }
 
@@ -122,26 +109,18 @@
   box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* Edit Section */
+/* EDIT FORM SECTION */
 .edit-section {
   background: #fafbfc;
   border-top: 1px solid #e2e8f0;
+  padding: 25px 35px;
 }
 
 .edit-header {
-  padding: 25px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  border-bottom: 1px solid #f0f2f5;
-}
-
-.edit-header h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #1f2937;
+  margin-bottom: 20px;
 }
 
 .close-edit {
@@ -151,8 +130,8 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  cursor: pointer;
   font-size: 18px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,51 +146,45 @@
 
 .form-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 12px;
 }
 
-.input-cell {
-  padding: 14px 40px;
-  vertical-align: top;
-}
-
-.table-input {
+.input-cell input {
   width: 100%;
-  padding: 14px 18px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.2s ease;
-  background: white;
 }
 
-.table-input:focus {
-  outline: none;
+.input-cell input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.table-input:disabled {
-  background: #f8fafc;
+.input-cell input:disabled {
+  background: #f3f4f6;
   color: #9ca3af;
 }
 
+/* FORM BUTTONS */
 .form-buttons {
-  padding: 30px 40px;
+  padding-top: 25px;
   display: flex;
   gap: 16px;
-  background: #fff;
 }
 
 .save-btn, .cancel-btn {
   flex: 1;
-  padding: 16px 24px;
-  border: none;
-  border-radius: 8px;
+  padding: 14px 24px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  border: none;
   transition: all 0.2s ease;
 }
 
@@ -239,6 +212,7 @@
   background: #4b5563;
 }
 
+/* LOADING */
 .loading-container {
   width: 100%;
   height: 100vh;
@@ -260,41 +234,27 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
 
-.loading-text {
-  color: #64748b;
-  font-size: 18px;
-  font-weight: 500;
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .profile-page {
-    padding: 15px;
-  }
-  
   .profile-main-content {
-    border-radius: 12px;
+    padding: 20px;
   }
   
-  .welcome-section, .display-header, .edit-header, .form-buttons, .edit-action {
-    padding-left: 25px;
-    padding-right: 25px;
+  .profile-display-section, 
+  .edit-section, 
+  .edit-action {
+    padding: 20px;
   }
   
   .label-cell, .value-cell, .input-cell {
-    padding: 16px 25px;
     display: block;
     width: 100% !important;
-  }
-  
-  .label-cell {
-    background: #f1f5f9;
-    border-radius: 8px 8px 0 0;
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
+    border-radius: 10px !important;
+    margin-bottom: 8px;
   }
   
   .form-buttons {

@@ -1,5 +1,4 @@
 package com.example.dorustreesportsacademy.controller;
-
 import com.example.dorustreesportsacademy.entity.StudentEntity;
 import com.example.dorustreesportsacademy.repository.StudentRepository;
 import com.example.dorustreesportsacademy.service.StudentService;

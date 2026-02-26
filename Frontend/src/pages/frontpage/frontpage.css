@@ -110,7 +110,6 @@
 }
 
 .login-btn:hover:not(:disabled) {
-  transform: scale(1.025);
   background-color: blue;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./enrollsports.css";
-
+//
 function EnrollSports({ setStudents }) {
   const [sportsList, setSportsList] = useState([]);
   const [form, setForm] = useState({
@@ -34,7 +34,7 @@ function EnrollSports({ setStudents }) {
   }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value }); // handle chnages calls every time in form so that value updates in form by setform
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
@@ -48,7 +48,7 @@ function EnrollSports({ setStudents }) {
   };
 
   const handleSportChange = (sportId) => {
-    const sport = sportsList.find(s => s.id === sportId);
+    const sport = sportsList.find(s => s.id === sportId);// sportsList,setSportsList(sportsArray);
     
     
     if (form.sports.includes(sportId)) {
@@ -62,7 +62,7 @@ function EnrollSports({ setStudents }) {
 
     const currentlySelectedSports = form.sports
       .map(id => sportsList.find(s => s.id === id))
-      .filter(Boolean);
+      .filter(Boolean);  //removes undefined
       
     const normalizedSportTiming = normalizeTiming(sport.timing);
     const hasTimeConflict = currentlySelectedSports.some(selectedSport => 
@@ -113,7 +113,7 @@ function EnrollSports({ setStudents }) {
     }
 
     try {
-      const payload = { ...form, sportIds: form.sports };
+      const payload = { ...form, sportIds: form.sports };  //  sportsIds : [1,3,5]
       await axios.post("http://localhost:8080/api/students/register", payload);
       alert("Registration Successful!");
 

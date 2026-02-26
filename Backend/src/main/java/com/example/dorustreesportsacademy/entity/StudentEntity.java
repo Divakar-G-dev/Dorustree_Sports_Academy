@@ -58,7 +58,7 @@ public class StudentEntity {
     @JoinTable(
             name = "student_sports",
             joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "sport_id")
+            inverseJoinColumns = @JoinColumn(name = "sport_id")// In Many-to-Many, there are two foreign keys, so inverseJoinColumns is required to define the second one.
     )
     private Set<SportEntity> sports = new HashSet<>();
 

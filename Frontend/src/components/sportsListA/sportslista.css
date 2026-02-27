@@ -173,6 +173,54 @@
   min-height: 16px;  /* Fixed space */
   display: block;
 }
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tooltip style */
+.tooltip-text {
+  position: absolute;
+  top: -28px; /* above input */
+  left: 0;
+  background-color: rgb(230, 255, 120);
+  border: 1px solid  rgb(241, 241, 69);
+  color: black;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none; /* does not block input */
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.tooltip-container:hover .tooltip-text {
+  opacity: 1;
+}
+
+/* Align all inputs and button in same height */
+.add-sport-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch; /* all same height */
+}
+
+.form-group input,
+.add-sport-btn {
+  height: 48px; /* exact same height */
+  padding: 0 16px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  box-sizing: border-box;
+}
+
 
 /* BUTTON PERFECT MATCH WITH INPUTS */
 .add-sport-btn {

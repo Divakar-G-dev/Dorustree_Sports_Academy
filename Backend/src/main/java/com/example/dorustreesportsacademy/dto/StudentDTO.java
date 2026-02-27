@@ -22,7 +22,7 @@ public class StudentDTO {
         StudentEntity s = new StudentEntity();
         s.setFirstName(firstName);
         s.setLastName(lastName);
-        // 🔥 KEY CHANGE: Use googleEmail for OAuth login matching
+        // KEY CHANGE: Use googleEmail for OAuth login matching
         s.setEmail(googleEmail != null ? googleEmail : email);
         s.setPhone(phone);
         s.setParentName(parentName);

@@ -6,15 +6,13 @@ const Sportslist = () => {
   const [sports, setSports] = useState([]);
   const [newSport, setNewSport] = useState({ name: "", fees: "", timing: "" });
   const [selectedSports, setSelectedSports] = useState([]);
+  const [hoveredInput, setHoveredInput] = useState({ name: false, fees: false, timing: false });
 
-  // LOAD SPORTS
+  // Load sports from API
   const fetchSports = async () => {
     try {
       const res = await axios.get("http://localhost:8080/api/sports");
-      const sportsArray = res.data.map((s) => ({
-        ...s,
-        id: Number(s.id),
-      }));
+      const sportsArray = res.data.map((s) => ({ ...s, id: Number(s.id) }));
       setSports(sportsArray);
     } catch (err) {
       console.error("Error fetching sports:", err);
@@ -25,21 +23,14 @@ const Sportslist = () => {
     fetchSports();
   }, []);
 
-  // TIME CONFLICT CHECK
-  const checkTimeConflict = (newTiming) => {
-    return newTiming && sports.some(sport => sport.timing === newTiming);
-  };
-
-  // NEW: TIMING FORMAT VALIDATION
+  // Timing format validation
   const validateTimingFormat = (timing) => {
     if (!timing) return false;
-    
-    // Expected format: "6:00 AM - 7:30 AM" or "7.30 AM - 9.00 AM"
-    const timePattern = /^(\d{1,2}:?\d{2}\s?(AM|PM|a\.m\.?|p\.m\.)?)\s*-\s*(\d{1,2}:?\d{2}\s?(AM|PM|a\.m\.?|p\.m\.)?)$/i;
-    
+    const timePattern = /^((0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM))\s*-\s*((0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM))$/i;
     return timePattern.test(timing);
   };
 
+  // Add sport
   const handleAddSport = async () => {
     if (!newSport.name || !newSport.fees || !newSport.timing) {
       alert("Fill all fields");
@@ -51,17 +42,17 @@ const Sportslist = () => {
       return;
     }
 
-    //  TIMING FORMAT VALIDATION
     if (!validateTimingFormat(newSport.timing)) {
-      alert(`Invalid timing format!\n\nUse format like: "6:00 AM - 7:30 AM"\nor "7.30 AM - 9.00 AM"`);
+      alert(`Invalid timing format!\nUse format like: "6:00 AM - 7:30 AM"`);
       return;
     }
 
-    //  TIME CONFLICT CHECK
-    if (checkTimeConflict(newSport.timing)) {
-      const conflictingSport = sports.find(sport => sport.timing === newSport.timing);
-      alert(`Cannot add "${newSport.name}"!\n\nTime ${newSport.timing} already used by:\n"${conflictingSport.name}"`);
-      return;
+    const conflictingSport = sports.find((s) => s.timing === newSport.timing);
+    if (conflictingSport) {
+      const confirmAdd = window.confirm(
+        `⚠ Time ${newSport.timing} is already used by "${conflictingSport.name}". Do you still want to add "${newSport.name}"?`
+      );
+      if (!confirmAdd) return;
     }
 
     try {
@@ -70,17 +61,17 @@ const Sportslist = () => {
         fees: parseInt(newSport.fees),
         timing: newSport.timing,
       });
-
       const addedSport = { ...res.data, id: Number(res.data.id) };
       setSports((prev) => [...prev, addedSport]);
       setNewSport({ name: "", fees: "", timing: "" });
       alert(`"${newSport.name}" added successfully!`);
     } catch (err) {
+      console.error(err.response?.data || err.message);
       alert("Failed to add sport");
     }
   };
 
-
+  // Delete sport
   const handleDeleteSport = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/sports/${id}`);
@@ -107,6 +98,8 @@ const Sportslist = () => {
     return 0;
   });
 
+  const conflictingSport = sports.find((s) => s.timing === newSport.timing);
+
   return (
     <div className="sportslist-container">
       <h2>Sports & Fees Management</h2>
@@ -124,12 +117,7 @@ const Sportslist = () => {
         <tbody>
           {sortedSports.map((sport) => (
             <tr key={sport.id}>
-              <td>
-                <span
-                >
-                  {sport.name}
-                </span>
-              </td>
+              <td>{sport.name}</td>
               <td>1 hr 30 mins</td>
               <td><strong className="timing">{sport.timing}</strong></td>
               <td className="fees">₹{sport.fees.toLocaleString("en-IN")}</td>
@@ -146,11 +134,17 @@ const Sportslist = () => {
         </tbody>
       </table>
 
-      {/* ADD SPORT FORM */}
+      {/* Add Sport Form */}
       <div className="add-sport-container">
         <h3>Add New Sport</h3>
         <div className="add-sport-form">
-          <div className="form-group">
+
+          {/* Name */}
+          <div 
+            className="form-group tooltip-container"
+            onMouseEnter={() => setHoveredInput({ ...hoveredInput, name: true })}
+            onMouseLeave={() => setHoveredInput({ ...hoveredInput, name: false })}
+          >
             <label>Sport Name</label>
             <input
               type="text"
@@ -158,9 +152,17 @@ const Sportslist = () => {
               value={newSport.name}
               onChange={(e) => setNewSport({ ...newSport, name: e.target.value })}
             />
+            {hoveredInput.name && !newSport.name && (
+              <span className="tooltip-text">Enter the sport name</span>
+            )}
           </div>
 
-          <div className="form-group">
+          {/* Fees */}
+          <div 
+            className="form-group tooltip-container"
+            onMouseEnter={() => setHoveredInput({ ...hoveredInput, fees: true })}
+            onMouseLeave={() => setHoveredInput({ ...hoveredInput, fees: false })}
+          >
             <label>Monthly Fees</label>
             <input
               type="number"
@@ -168,32 +170,47 @@ const Sportslist = () => {
               value={newSport.fees}
               onChange={(e) => setNewSport({ ...newSport, fees: e.target.value })}
             />
+            {hoveredInput.fees && !newSport.fees && (
+              <span className="tooltip-text">Enter monthly fees in ₹</span>
+            )}
           </div>
 
-          <div className="form-group">
-            <label>Timing (Unique)</label>
+          {/* Timing */}
+          <div 
+            className="form-group tooltip-container"
+            onMouseEnter={() => setHoveredInput({ ...hoveredInput, timing: true })}
+            onMouseLeave={() => setHoveredInput({ ...hoveredInput, timing: false })}
+          >
+            <label>Timing</label>
             <input
               type="text"
               placeholder="e.g., 6:00 AM - 7:30 AM"
               value={newSport.timing}
               onChange={(e) => setNewSport({ ...newSport, timing: e.target.value })}
             />
-            {!validateTimingFormat(newSport.timing) && newSport.timing && (
-              <span className="format-warning">Invalid format! Use "6:00 AM - 7:30 AM"</span>
+            {hoveredInput.timing && !newSport.timing && (
+              <span className="tooltip-text">
+                Format: "6:00 AM - 7:30 AM", Duration: 1 hr 30 mins
+              </span>
             )}
-            {checkTimeConflict(newSport.timing) && (
-              <span className="conflict-warning">Time already used!</span>
+
+            {/* Warnings */}
+            {!validateTimingFormat(newSport.timing) && newSport.timing && (
+              <span className="format-warning">
+                Invalid format! Use "6:00 AM - 7:30 AM"
+              </span>
             )}
           </div>
 
-          <button 
-            className="add-sport-btn" 
+          {/* Add Button */}
+          <button
+            className="add-sport-btn"
             onClick={handleAddSport}
-            disabled={!newSport.name || !newSport.fees || !newSport.timing || 
-                     !validateTimingFormat(newSport.timing) || checkTimeConflict(newSport.timing)}
+            disabled={!newSport.name || !newSport.fees || !newSport.timing || !validateTimingFormat(newSport.timing)}
           >
             Add Sport
           </button>
+
         </div>
       </div>
     </div>

@@ -35,13 +35,13 @@ public class AuthController {
             StudentEntity user = studentRepo.findByEmail(request.email)
                     .orElseThrow(() -> new RuntimeException("Email not found"));
 
-            // ✅ AUTO-HASH PLAIN TEXT ON FIRST LOGIN
+            // AUTO-HASH PLAIN TEXT ON FIRST LOGIN
             if (!user.getPassword().startsWith("$2a$")) {
                 user.setPassword(encoder.encode(request.password));
                 studentRepo.save(user);
             }
 
-            if (!encoder.matches(request.password, user.getPassword())) {
+            if (!encoder.matches(request.password, user.getPassword())) { //compaer the user typed password and bcrypt password
                 return ResponseEntity.badRequest()
                         .body(Map.of("error", "Wrong password"));
             }
@@ -82,12 +82,12 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/hash")
+    @PostMapping("/hash")  //No
     public Map<String, String> hash(@RequestBody Map<String, String> req) {
         return Map.of("hashed", encoder.encode(req.get("password")));
     }
 
-    @PostMapping("/auto-hash-all")
+    @PostMapping("/auto-hash-all")  //No
     public String autoHashAll() {
         List<StudentEntity> students = studentRepo.findAll();
         int hashedCount = 0;

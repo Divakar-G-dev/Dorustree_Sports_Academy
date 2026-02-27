@@ -23,15 +23,7 @@ public class SportService {
         return sportRepo.findAll();
     }
 
-    // ✅ VALIDATE: Prevent duplicate timings
     public SportEntity addSport(SportEntity sport) {
-        // Check if timing already exists
-        List<SportEntity> existingSports = sportRepo.findAll();
-        for (SportEntity existing : existingSports) {
-            if (existing.getTiming().equals(sport.getTiming())) {
-                throw new RuntimeException("Timing " + sport.getTiming() + " already exists for " + existing.getName());
-            }
-        }
         return sportRepo.save(sport);
     }
 
@@ -39,12 +31,12 @@ public class SportService {
         SportEntity sport = sportRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sport not found with id: " + id));
 
-
+        // Remove the sports from students too
         List<StudentEntity> allStudents = studentRepo.findAll();
         for (StudentEntity student : allStudents) {
-            if (student.getSports().remove(sport)) {
+            if (student.getSports().remove(sport)) {  //remove the sport if exist
                 int newTotalFees = student.getSports().stream()
-                        .mapToInt(SportEntity::getFees)
+                        .mapToInt(SportEntity::getFees)//.mapToInt(sport -> sport.getFees())
                         .sum();
                 student.setTotalFees(newTotalFees);
                 studentRepo.save(student);

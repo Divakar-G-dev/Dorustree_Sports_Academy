@@ -1,5 +1,4 @@
 package com.example.dorustreesportsacademy.controller;
-
 import com.example.dorustreesportsacademy.dto.SportDTO;
 import com.example.dorustreesportsacademy.dto.StudentDTO;
 import com.example.dorustreesportsacademy.entity.StudentEntity;
@@ -46,7 +45,7 @@ public class StudentController {
     public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
         try {
             StudentEntity student = studentService.getStudentById(id);
-            // ✅ FORCE LOAD SPORTS - Critical for frontend
+            // FORCE LOAD SPORTS - Critical for frontend
             if (student.getSports() != null) {
                 student.getSports().size(); // Trigger lazy loading
             }
@@ -72,9 +71,9 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Map<String, Object> dto) {
+    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Map<String, Object> dto) {  // get as map due to update in specific field
         try {
-            StudentDTO studentDTO = new StudentDTO();
+            StudentDTO studentDTO = new StudentDTO(); //Dto because it not related with db
 
             if (dto.get("firstName") != null) studentDTO.setFirstName((String) dto.get("firstName"));
             if (dto.get("lastName") != null) studentDTO.setLastName((String) dto.get("lastName"));
@@ -87,7 +86,7 @@ public class StudentController {
             if (sportIdsList != null) {
                 Set<Long> sportIds = new HashSet<>();
                 for (Object sportId : sportIdsList) {
-                    sportIds.add(((Number) sportId).longValue());
+                    sportIds.add(((Number) sportId).longValue()); //since dto accept sportid as long number
                 }
                 studentDTO.setSportIds(sportIds);
             }
@@ -101,7 +100,7 @@ public class StudentController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}") //No
     public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
         try {
             studentService.deleteStudent(id);
@@ -111,7 +110,7 @@ public class StudentController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete") //No
     public ResponseEntity<String> deleteAllStudent(){
         try{
             studentService.deleteAllStudent();

@@ -48,7 +48,7 @@ public class StudentService {
             throw new RuntimeException("At least one sport must be selected");
         }
 
-        // ✅ AUTO-HASH PASSWORD ON REGISTRATION
+        // HASH THE PASSWORD ON REGISTRATION
         if (student.getPassword() != null && !student.getPassword().startsWith("$2a$")) {
             student.setPassword(encoder.encode(student.getPassword()));
         }
@@ -95,7 +95,7 @@ public class StudentService {
         if (dto.getEmergencyContact() != null) existingStudent.setEmergencyContact(dto.getEmergencyContact());
         if (dto.getDob() != null) existingStudent.setDob(LocalDate.parse(dto.getDob()));
 
-        // ✅ AUTO-HASH PASSWORD ON UPDATE
+        // HASH PASSWORD ON UPDATE
         if (dto.getPassword() != null && !dto.getPassword().isBlank() && !dto.getPassword().startsWith("$2a$")) {
             existingStudent.setPassword(encoder.encode(dto.getPassword()));
         }
@@ -108,7 +108,7 @@ public class StudentService {
 
             validateNoTimeConflicts(sports);
             existingStudent.setSports(sports);
-            int totalFees = sports.stream().mapToInt(SportEntity::getFees).sum();
+            int totalFees = sports.stream().mapToInt(SportEntity::getFees).sum();//.mapToInt(sport -> sport.getFees())
             existingStudent.setTotalFees(totalFees);
         }
 

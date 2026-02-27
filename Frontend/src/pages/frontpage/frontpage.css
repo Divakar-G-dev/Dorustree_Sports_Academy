@@ -26,6 +26,7 @@
 .inside-head {
   display: flex;
   justify-content: center;
+  cursor:default;
 }
 
 .inside-head img {

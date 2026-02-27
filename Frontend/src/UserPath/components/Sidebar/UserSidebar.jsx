@@ -24,6 +24,13 @@ const UserSidebar = () => {
         <img src="/src/UserPath/assets/Edit.png" className="nav-icon"/>
         <span>Edit Sports</span>
       </NavLink>
+
+      <NavLink to="/user/about-us" className="nav-item">
+        <img src="/src/UserPath/assets/dorustree-logo-2.png" className="nav-icon"/>
+        <span>About Us</span>
+      </NavLink>
+
+
     </div>
   );
 };

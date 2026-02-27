@@ -14,6 +14,7 @@ import UserProfile from "./UserPath/pages/UserProfile/UserProfile.jsx";
 import EnrolledSports from "./UserPath/pages/EnrolledSports/EnrolledSports.jsx";
 import EditSports from "./UserPath/pages/EditSports/EditSports.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AboutUs from "./UserPath/pages/AboutUs/AboutUs.jsx";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="profile" element={<UserProfile />} />
               <Route path="enrolled-sports" element={<EnrolledSports />} />
               <Route path="edit-sports" element={<EditSports />} />
+              <Route path="about-us" element={<AboutUs />} />
             </Route>
           </Route>
 

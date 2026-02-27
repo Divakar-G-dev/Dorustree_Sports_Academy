@@ -185,12 +185,13 @@
   position: absolute;
   top: -28px; /* above input */
   left: 0;
-  background-color: rgb(230, 255, 120);
-  border: 1px solid  rgb(241, 241, 69);
+  background-color: rgb(247, 247, 247);
+  border: 2px solid  rgb(241, 241, 69);
   color: black;
   padding: 6px 8px;
   border-radius: 4px;
   font-size: 0.8rem;
+  font-weight: 100;
   white-space: nowrap;
   pointer-events: none; /* does not block input */
   opacity: 0;

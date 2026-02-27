@@ -189,9 +189,9 @@ const Sportslist = () => {
               onChange={(e) => setNewSport({ ...newSport, timing: e.target.value })}
             />
             {hoveredInput.timing && !newSport.timing && (
-              <span className="tooltip-text">
-                Format: "6:00 AM - 7:30 AM", Duration: 1 hr 30 mins
-              </span>
+              <h4 className="tooltip-text">
+               ** Format: "6:00 AM - 7:30 AM", <h4 style={{fontWeight:"100",textAlign:"center"}}>Duration: 1 hr 30 mins</h4>
+              </h4>
             )}
 
             {/* Warnings */}

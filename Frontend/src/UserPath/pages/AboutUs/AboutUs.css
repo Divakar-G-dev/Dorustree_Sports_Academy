@@ -1,0 +1,67 @@
+/* AboutUs.css */
+.aboutus-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background: #fefefe;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
+  line-height: 1.6;
+  text-align: left;
+  margin-right: 150px;
+}
+
+.aboutus-container h1 {
+  font-size: 2.8rem;
+  color: #2563eb;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.aboutus-container p {
+  font-size: 1.125rem;
+  margin-bottom: 20px;
+  color: #334155;
+  text-align: center;
+}
+
+.features-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 25px 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-list li {
+  position: relative;
+  font-size: 1.125rem;
+  padding-left: 30px;
+  margin-bottom: 18px;
+  color: #475569;
+  border-left: 4px solid #2563eb;
+  background: #eff6ff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+  transition: background 0.3s ease;
+}
+
+.features-list li strong {
+  color: #1e40af;
+}
+
+.features-list li:hover {
+  background: #dbeafe;
+}
+
+.closing {
+  font-style: italic;
+  color: #475569;
+  font-size: 1.1rem;
+  text-align: center;
+}

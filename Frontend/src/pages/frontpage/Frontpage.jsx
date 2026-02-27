@@ -121,8 +121,8 @@ function Frontpage() {
   return (
     <div className="login-page-container">
       <div className="login-header">
-        <div className="inside-head">
-            <img src="src/assets/dorustree-logo-2.png" alt="Dorustree Logo" />
+        <div onClick={()=>navigate("/login")} className="inside-head">
+            <img  src="src/assets/dorustree-logo-2.png" alt="Dorustree Logo" />
             <h1>
               <span className="head-word1" style={{color:"#fbda3d" }}>orustree </span>
               <span className="head-word2" >Sports </span>

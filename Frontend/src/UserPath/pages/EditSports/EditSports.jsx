@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext.jsx";
 import axios from "axios";
 import './EditSports.css';
+import { toast } from "react-toastify";
 
 const EditSports = () => {
   const { studentData, updateStudentData } = useContext(UserContext);
@@ -58,7 +59,7 @@ const EditSports = () => {
         .map(s => `"${s.name}"`)
         .join(", ");
       
-      alert(`Cannot select "${sport.name}"!\n${sport.timing} already used by: ${conflictingSports}`);
+      toast.error(`Cannot select "${sport.name}"!\n${sport.timing} already used by: ${conflictingSports}`);
       return;
     }
 
@@ -83,10 +84,10 @@ const EditSports = () => {
       await axios.put(`http://localhost:8080/api/students/${studentData.id}`, payload);
       const selectedSportsData = allSports.filter(s => selectedSports.includes(s.id));
       updateStudentData({ enrolledSports: selectedSportsData });
-      alert("Sports updated successfully!");
+      toast.success("Sports updated successfully!");
     } catch (err) {
       const errorMsg = err.response?.data?.error || err.response?.data?.message || "Failed to update sports";
-      alert(`Error: ${errorMsg}`);
+      toast.error(`Error: ${errorMsg}`);
     } finally {
       setLoading(false);
     }

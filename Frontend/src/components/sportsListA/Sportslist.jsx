@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./sportslista.css";
+import { toast } from "react-toastify";
 
 const Sportslist = () => {
   const [sports, setSports] = useState([]);
@@ -33,27 +34,26 @@ const Sportslist = () => {
   // Add sport
   const handleAddSport = async () => {
     if (!newSport.name || !newSport.fees || !newSport.timing) {
-      alert("Fill all fields");
+      toast.info("Fill all fields");
       return;
     }
 
     if (sports.some((s) => s.name.toLowerCase() === newSport.name.toLowerCase())) {
-      alert("Sport already exists");
+      toast.error("Sport already exists");
       return;
     }
 
     if (!validateTimingFormat(newSport.timing)) {
-      alert(`Invalid timing format!\nUse format like: "6:00 AM - 7:30 AM"`);
+      toast.error(`Invalid timing format!\nUse format like: "6:00 AM - 7:30 AM"`);
       return;
     }
 
     const conflictingSport = sports.find((s) => s.timing === newSport.timing);
-    if (conflictingSport) {
-      const confirmAdd = window.confirm(
-        `⚠ Time ${newSport.timing} is already used by "${conflictingSport.name}". Do you still want to add "${newSport.name}"?`
-      );
-      if (!confirmAdd) return;
-    }
+    if (conflictingSport) { 
+      const confirmAdd = window.confirm(` Time ${newSport.timing} is already used by "${conflictingSport.name}". Do you still want to add "${newSport.name}"? `); 
+      if (!confirmAdd) return; 
+  }
+
 
     try {
       const res = await axios.post("http://localhost:8080/api/sports", {
@@ -64,10 +64,10 @@ const Sportslist = () => {
       const addedSport = { ...res.data, id: Number(res.data.id) };
       setSports((prev) => [...prev, addedSport]);
       setNewSport({ name: "", fees: "", timing: "" });
-      alert(`"${newSport.name}" added successfully!`);
+      toast.success(`"${newSport.name}" added successfully!`);
     } catch (err) {
       console.error(err.response?.data || err.message);
-      alert("Failed to add sport");
+      toast.error("Failed to add sport");
     }
   };
 
@@ -84,9 +84,9 @@ const Sportslist = () => {
         }
         return prevSports.filter((s) => Number(s.id) !== Number(id));
       });
-      alert("Sport deleted successfully!");
+      toast.success("Sport deleted successfully!");
     } catch (err) {
-      alert("Failed to delete sport");
+      toast.error("Failed to delete sport");
     }
   };
 

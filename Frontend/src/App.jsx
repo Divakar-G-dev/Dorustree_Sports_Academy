@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';  
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Frontpage from "./pages/frontpage/Frontpage.jsx";
 import AppLayout from "./AppLayout.jsx";  
@@ -10,7 +12,6 @@ import Sports from "./components/sportsListA/Sportslist.jsx";
 import Enrollsports from "./components/enrollsports/Enrollsports.jsx";
 import UserLayout from "./UserPath/UserLayout.jsx";
 import UserProfile from "./UserPath/pages/UserProfile/UserProfile.jsx";
-
 import EnrolledSports from "./UserPath/pages/EnrolledSports/EnrolledSports.jsx";
 import EditSports from "./UserPath/pages/EditSports/EditSports.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -20,10 +21,22 @@ function App() {
   return (
     <GoogleOAuthProvider clientId="301875341554-gv5ube8pac68j1naagktv2r9smh3d4fp.apps.googleusercontent.com">
       <BrowserRouter>
+
+        {/* Global Toast Container */}
+        <ToastContainer 
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="colored"
+        />
+
         <Routes>
           <Route path="/" element={<Frontpage />} />
-          
-         
+
           <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
@@ -33,7 +46,6 @@ function App() {
             </Route>
           </Route>
 
-          
           <Route element={<ProtectedRoute allowedRoles={["Student", "Admin"]} />}>
             <Route path="/user" element={<UserLayout />}>
               <Route index element={<UserProfile />} />

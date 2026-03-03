@@ -74,8 +74,8 @@
 }
 
 .sport-label:hover {
-  border-color: green;
-  background: #eff6ff;
+  border-color:green;
+  background:rgb(227, 240, 245);
   box-shadow: 0 2px 8px rgba(59,130,246,0.15);
 }
 

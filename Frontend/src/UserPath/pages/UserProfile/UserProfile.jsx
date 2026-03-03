@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext.jsx";
 import axios from "axios";
 import './UserProfile.css';
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const { studentData, updateStudentData } = useContext(UserContext);
@@ -69,9 +70,9 @@ const UserProfile = () => {
 
       updateStudentData({ profile });
       setEditing(false);
-      alert("✅ Profile updated successfully!");
+      toast.success(" Profile updated successfully!");
     } catch (err) {
-      alert("❌ Save failed: " + (err.response?.data?.message || err.message));
+      toast.error("Save failed: " + (err.response?.data?.message || err.message));
     } finally {
       setLoading(false);
     }

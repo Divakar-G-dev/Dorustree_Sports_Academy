@@ -17,7 +17,6 @@ const EnrolledSports = () => {
         
         {studentData.enrolledSports.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">⚽</div>
             <h3 className="empty-title">No sports enrolled</h3>
             <p className="empty-text">Visit Edit Sports to enroll in sports activities</p>
           </div>

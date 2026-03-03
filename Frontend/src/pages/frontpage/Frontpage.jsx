@@ -3,6 +3,7 @@ import axios from "axios";
 import { GoogleLogin } from '@react-oauth/google';  
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "/src/UserPath/context/UserContext.jsx";  
+import { toast } from 'react-toastify';  // Import toast
 import "./frontpage.css";
 
 function Frontpage() {
@@ -25,7 +26,7 @@ function Frontpage() {
     }
   }, [navigate]);
 
-  // Email/password login (manual token)
+  // Email/password login
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -52,38 +53,43 @@ function Frontpage() {
       // Update context
       updateStudentData(studentData);
 
-      // Store backend token (manual)
+      // Store backend token
       sessionStorage.setItem('authToken', token);
 
-      alert(`✅ Welcome ${user.role}: ${user.profile.firstName}!`);
+      // Success toast
+      toast.success(` Welcome ${user.profile.firstName}!`);
 
-      user.role === "Admin"
-        ? navigate("/dashboard", { replace: true })
-        : navigate("/user", { replace: true });
+      // Navigate after a short delay so toast can render
+      setTimeout(() => {
+        user.role === "Admin"
+          ? navigate("/dashboard", { replace: true })
+          : navigate("/user", { replace: true });
+      }, 200);
 
     } catch (error) {
-      setLoginError(error.response?.data?.error || "Login failed");
+      const msg = error.response?.data?.error || "Login failed";
+      setLoginError(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
   };
 
-  // Google OAuth login (auto token)
+  // Google OAuth login
   const handleGoogleSuccess = async (response) => {
     try {
-      // Real Google JWT from the login response
       const googleToken = response.credential;
 
-      // Decode JWT client-side (optional) to get email
       const decoded = JSON.parse(atob(googleToken.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
       const googleEmail = decoded.email;
 
-      // Fetch DB user by email
       const res = await axios.get("http://localhost:8080/api/students");
       const user = res.data.find(u => u.email === googleEmail);
 
       if (!user) {
-        setLoginError(`❌ "${googleEmail}" not found! Admin must register first.`);
+        const msg = `"${googleEmail}" not found! Admin must register first.`;
+        setLoginError(msg);
+        toast.error(msg);
         return;
       }
 
@@ -102,19 +108,22 @@ function Frontpage() {
         enrolledSports: fullUser.sports || []
       };
 
-      // Update context & store real Google JWT
       updateStudentData(studentData);
       sessionStorage.setItem('authToken', googleToken);
 
-      alert(`✅ Welcome ${user.role}: ${user.firstName}!`);
+      toast.success(`Welcome ${studentData.profile.firstName}!`);
 
-      user.role === "Admin"
-        ? navigate("/dashboard", { replace: true })
-        : navigate("/user", { replace: true });
+      setTimeout(() => {
+        user.role === "Admin"
+          ? navigate("/dashboard", { replace: true })
+          : navigate("/user", { replace: true });
+      }, 200);
 
     } catch (error) {
       console.error("Google login failed:", error);
-      setLoginError("Google login failed - check console");
+      const msg = "Google login failed - check console";
+      setLoginError(msg);
+      toast.error(msg);
     }
   };
 
@@ -187,7 +196,7 @@ function Frontpage() {
         <div className="google-login-container">
           <GoogleLogin
             onSuccess={handleGoogleSuccess}
-            onError={() => alert("Google login failed")}
+            onError={() => toast.error("Google login failed")}
             theme="filled_blue"
             size="large"
             text="signin_with"

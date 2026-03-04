@@ -175,6 +175,7 @@
   padding-top: 25px;
   display: flex;
   gap: 16px;
+  
 }
 
 .save-btn, .cancel-btn {
@@ -189,12 +190,15 @@
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: rgb(31, 185, 31);
   color: white;
+  border: green solid 1px;
+  margin-right: 50px;
 }
 
 .save-btn:hover:not(:disabled) {
   transform: translateY(-1px);
+  background-color: green;
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
 }
 

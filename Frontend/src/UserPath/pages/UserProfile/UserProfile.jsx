@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const { studentData, updateStudentData } = useContext(UserContext);
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(false); // toggles inline edit mode
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(false);
 
-  
+  // Fetch student data when login/student ID is available
   useEffect(() => {
-    if (studentData?.id) { // this is only after login that student is enrolled or not, then detials need to be viewed
+    if (studentData?.id) {
       fetchStudentData();
     }
   }, [studentData?.id]);
@@ -28,7 +28,7 @@ const UserProfile = () => {
           lastName: res.data.lastName || "",
           phone: res.data.phone || "",
           parentName: res.data.parentName || "",
-          dob: res.data.dob ? (res.data.dob.split('T')[0] || "") : "",
+          dob: res.data.dob ? res.data.dob.split('T')[0] : "",
           emergencyContact: res.data.emergencyContact || ""
         },
         enrolledSports: res.data.sports || []
@@ -49,14 +49,14 @@ const UserProfile = () => {
     }
   }, [studentData?.profile]);
 
+  // Track changes in the table inputs
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Submit updated profile
+  const handleSubmit = async () => {
     setLoading(true);
-
     try {
       await axios.put(`http://localhost:8080/api/students/${studentData.id}`, {
         firstName: profile.firstName,
@@ -68,9 +68,9 @@ const UserProfile = () => {
         sportIds: studentData.enrolledSports.map(s => s.id).filter(id => id)
       });
 
-      updateStudentData({ profile });
+      updateStudentData({ profile }); // Update context
       setEditing(false);
-      toast.success(" Profile updated successfully!");
+      toast.success("Profile updated successfully!");
     } catch (err) {
       toast.error("Save failed: " + (err.response?.data?.message || err.message));
     } finally {
@@ -110,7 +110,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        {/* Profile Display + Edit Toggle */}
+        {/* Profile Table */}
         <div className="profile-display-section">
           <div className="display-header">
             <h2>Profile Information</h2>
@@ -122,76 +122,58 @@ const UserProfile = () => {
                 <tr key={key}>
                   <td className="label-cell">{label}</td>
                   <td className="value-cell">
-                    {key === "dob" ? 
-                      (profile[key] ? new Date(profile[key]).toLocaleDateString('en-IN') : 'Not set') : 
-                      (profile[key] || 'Not set')
-                    }
+                    {editing ? (
+                      <input
+                        type={key === "dob" ? "date" : "text"}
+                        name={key}
+                        value={profile[key] || ""}
+                        onChange={handleChange} // inline changes
+                        disabled={loading}
+                        className="table-input"
+                      />
+                    ) : (
+                      key === "dob"
+                        ? profile[key]
+                          ? new Date(profile[key]).toLocaleDateString('en-IN')
+                          : "Not set"
+                        : profile[key] || "Not set"
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          {/* Edit Button Below Table */}
-          {!editing && (
-            <div className="edit-action">
-              <button className="edit-btn" onClick={() => setEditing(true)}>
-                Edit Profile
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Edit Form - Hidden when not editing */}
-        {editing && (
-          <div className="edit-section">
-            <div className="edit-header">
-              <h2>Edit Profile</h2>
-              <button className="close-edit" onClick={() => setEditing(false)}>
-                ✕
-              </button>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="edit-form">
-              <table className="form-table">
-                <tbody>
-                  {fields.map(({ key, label }) => (
-                    <tr key={key}>
-                      <td className="label-cell">{label}</td>
-                      <td className="input-cell">
-                        <input
-                          type={key === "dob" ? "date" : "text"}
-                          name={key}
-                          value={profile[key] || ""}
-                          onChange={handleChange}
-                          disabled={loading}
-                          className="table-input"
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              
-              <div className="form-buttons">
-                <button type="submit" disabled={loading} className="save-btn">
-                  {loading ? 'Saving...' : 'Save Changes'}
-                </button>
-                <button 
-                  type="button" 
-                  onClick={() => { 
-                    setEditing(false); 
-                    setProfile(studentData.profile || profile); 
-                  }} 
+          {/* Buttons */}
+          <div className="edit-action" style={{justifyContent:"space-between"}}>
+            {editing ? (
+              <>
+                <button
+                  className="save-btn"
+                  onClick={handleSubmit}
                   disabled={loading}
+                  
+                >
+                  {loading ? "Saving..." : "Save Changes"}
+                </button>
+                <button
                   className="cancel-btn"
+                  onClick={() => {
+                    setEditing(false);
+                    setProfile(studentData.profile || profile); // revert changes
+                  }}
+                  disabled={loading}
                 >
                   Cancel
                 </button>
-              </div>
-            </form>
+              </>
+            ) : (
+              <button className="edit-btn" onClick={() => setEditing(true)}>
+                Edit Profile
+              </button>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

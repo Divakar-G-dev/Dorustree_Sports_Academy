@@ -1,9 +1,10 @@
+/* Container */
 .sportslist-container {
   max-width: 1000px;
   margin: 40px auto;
+  padding: 30px;
   background: #ffffff;
   border-radius: 12px;
-  padding: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -11,18 +12,18 @@
 .sportslist-container h2 {
   text-align: center;
   margin-bottom: 35px;
-  color: #1e293b;
   font-size: 32px;
   font-weight: 600;
-  letter-spacing: -0.5px;
+  color: #1e293b;
 }
 
+/* Sports Table */
 .sportslist-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   margin-bottom: 40px;
-  background: white;
+  background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -35,8 +36,6 @@
   text-align: center;
   font-weight: 600;
   font-size: 17px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
 }
 
 .sportslist-table td {
@@ -53,45 +52,15 @@
   transition: background-color 0.2s ease;
 }
 
-.sport-name {
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  font-weight: 500;
-  color: #374151;
-}
-
-.sport-name:hover {
-  background: #e2e8f0;
-}
-
-.sport-name.selected {
-  background: #dbeafe;
-  color: #1d4ed8;
-  font-weight: 600;
-}
-
-.timing {
-  color: #374151;
-  font-weight: 600;
-}
-
-.fees {
-  font-weight: 700;
-  color: #374151;
-  font-size: 15px;
-}
-
 .delete-btn {
   background: #f87171;
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
-  cursor: pointer;
   font-weight: 600;
   font-size: 13px;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -100,174 +69,109 @@
   transform: translateY(-1px);
 }
 
+/* Add Sport Section */
 .add-sport-container {
-  margin-top: 40px;
-  padding: 30px;
   background-color: #dfe4f5;
+  padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .add-sport-container h3 {
   text-align: center;
   margin-bottom: 25px;
-  color: #1e293b;
   font-size: 24px;
   font-weight: 600;
+  color: #1e293b;
 }
 
-/* PERFECTLY ALIGNED HORIZONTAL FORM */
+/* Form - Grid */
 .add-sport-form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
-  align-items: stretch;  /* All items same height */
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr); /* 3 inputs + button */
+  gap: 16px;
+  align-items: flex-start; /* keep button aligned with inputs */
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  height: 100%;  /* Fill grid cell */
 }
 
 .form-group label {
   font-weight: 600;
-  color: #374151;
   font-size: 14px;
-  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  color: #374151;
 }
 
-/* ALL INPUTS IDENTICAL HEIGHT */
 .form-group input {
   height: 48px;
   padding: 0 16px;
-  flex: 1;
+  font-size: 15px;
   border: 2px solid #e2e8f0;
   border-radius: 10px;
-  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
   transition: all 0.2s ease;
   background: white;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
 }
 
 .form-group input:focus {
-  outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* WARNINGS ABOVE - NO MISALIGNMENT */
-.format-warning,
-.conflict-warning {
-  color: #dc2626;
+/* Validation warning below timing input */
+.format-warning {
   font-size: 12px;
+  color: #dc2626;
   font-weight: 600;
-  margin-bottom: 0;
-  order: -1;
-  min-height: 16px;  /* Fixed space */
-  display: block;
-}
-/* Tooltip container */
-.tooltip-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  margin-top: 14px;
+  min-height: 18px; /* ensures consistent spacing even when empty */
 }
 
-/* Tooltip style */
-.tooltip-text {
-  position: absolute;
-  top: -28px; /* above input */
-  left: 0;
-  background-color: rgb(247, 247, 247);
-  border: 2px solid  rgb(241, 241, 69);
-  color: black;
-  padding: 6px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 100;
-  white-space: nowrap;
-  pointer-events: none; /* does not block input */
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 10;
-}
-
-.tooltip-container:hover .tooltip-text {
-  opacity: 1;
-}
-
-/* Align all inputs and button in same height */
-.add-sport-form {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  align-items: stretch; /* all same height */
-}
-
-.form-group input,
+/* Add Sport Button - Same height as inputs */
 .add-sport-btn {
-  height: 48px; /* exact same height */
-  padding: 0 16px;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 2px solid #e2e8f0;
-  background: white;
-  box-sizing: border-box;
-}
-
-
-/* BUTTON PERFECT MATCH WITH INPUTS */
-.add-sport-btn {
+  height: 48px; /* same as input height */
+  padding: 0 20px;
   background: #3b82f6;
   color: white;
-  height: 48px;  /* Exact input height */
-  padding: 0 24px;
-  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid #3b82f6;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 22px;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 1.2;
+  margin-top: 20px; /* aligns roughly with inputs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-sizing: border-box;
-  display: block;  /* Matches input alignment */
 }
 
 .add-sport-btn:hover:not(:disabled) {
-  background-color: #2563eb;
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .add-sport-btn:disabled {
   background: #9ca3af;
+  border-color: #9ca3af;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  .sportslist-container {
-    margin: 20px;
-    padding: 20px;
-  }
-  
   .add-sport-form {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
-  
-  .form-group {
-    height: auto;
+
+  .add-sport-btn {
+    margin-top: 12px;
   }
 }

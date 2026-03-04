@@ -74,14 +74,14 @@
 }
 
 .sport-label:hover {
-  border-color:green;
+  border-color:rgb(65, 176, 219);
   background:rgb(227, 240, 245);
   box-shadow: 0 2px 8px rgba(59,130,246,0.15);
 }
 
 .sport-item.selected .sport-label {
-  border-color: green;
-  background-color: lightgreen;
+  border-color: skyblue;
+  background-color: lightblue;
   box-shadow: 0 4px 12px rgba(30,64,175,0.2);
 }
 
@@ -89,7 +89,7 @@
   width: 16px;
   height: 16px;
   margin-right: 12px;
-  accent-color: green;
+  accent-color: darkblue;
   flex-shrink: 0;
 }
 

@@ -35,37 +35,38 @@ const EditSports = () => {
       .replace(/\s+/g, ' ')
       .trim();
   };
-
   const toggleSport = (sportId) => {
-    if (selectedSports.includes(sportId)) {
-      setSelectedSports(selectedSports.filter(id => id !== sportId));
-      setErrors({});
-      return;
-    }
+  const sport = allSports.find(s => s.id === sportId);
+  if (!sport) return;
 
-    const sport = allSports.find(s => s.id === sportId);
-    const currentlySelectedSports = selectedSports
-      .map(id => allSports.find(s => s.id === id))
-      .filter(Boolean);
-      
-    const normalizedSportTiming = normalizeTiming(sport.timing);
-    const hasTimeConflict = currentlySelectedSports.some(selectedSport => 
-      normalizeTiming(selectedSport.timing) === normalizedSportTiming
-    );
-
-    if (hasTimeConflict) {
-      const conflictingSports = currentlySelectedSports
-        .filter(s => normalizeTiming(s.timing) === normalizedSportTiming)
-        .map(s => `"${s.name}"`)
-        .join(", ");
-      
-      toast.error(`Cannot select "${sport.name}"!\n${sport.timing} already used by: ${conflictingSports}`);
-      return;
-    }
-
-    setSelectedSports([...selectedSports, sportId]);
+  // If already selected, remove it
+  if (selectedSports.includes(sportId)) {
+    setSelectedSports(selectedSports.filter(id => id !== sportId));
     setErrors({});
-  };
+    return;
+  }
+
+  // Check for time conflict with already selected sports
+  const normalizedSportTiming = normalizeTiming(sport.timing);
+  const conflict = selectedSports.some(id => {
+    const selected = allSports.find(s => s.id === id);
+    return selected && normalizeTiming(selected.timing) === normalizedSportTiming;
+  });
+
+  if (conflict) {
+    const conflictingSports = selectedSports
+      .map(id => allSports.find(s => s.id === id))
+      .filter(s => s && normalizeTiming(s.timing) === normalizedSportTiming)
+      .map(s => `"${s.name}"`)
+      .join(", ");
+
+    toast.error(`Cannot select "${sport.name}"!\n${sport.timing} already used by: ${conflictingSports}`);
+    return;
+  }
+
+  setSelectedSports([...selectedSports, sportId]);
+  setErrors({});
+};
 
   const validateSelection = () => {
     const newErrors = {};
@@ -113,25 +114,21 @@ const EditSports = () => {
 
         <div className="sports-list">
           {allSports.map((sport) => (
-            <div 
-              key={sport.id}
-              className={`sport-item ${selectedSports.includes(sport.id) ? 'selected' : ''}`}
-              onClick={() => toggleSport(sport.id)}
-            >
-              <label className="sport-label">
-                <input
-                  type="checkbox"
-                  checked={selectedSports.includes(sport.id)}
-                  onChange={() => toggleSport(sport.id)}
-                />
-                <div className="sport-content">
-                  <div className="sport-name">{sport.name}</div>
-                  <div className="sport-timing">{sport.timing}</div>
-                  <div className="sport-fee">₹{sport.fees?.toLocaleString("en-IN")}</div>
-                </div>
-              </label>
-            </div>
-          ))}
+  <div key={sport.id} className={`sport-item ${selectedSports.includes(sport.id) ? 'selected' : ''}`}>
+    <label className="sport-label">
+      <input
+        type="checkbox"
+        checked={selectedSports.includes(sport.id)}
+        onChange={() => toggleSport(sport.id)}
+      />
+      <div className="sport-content">
+        <div className="sport-name">{sport.name}</div>
+        <div className="sport-timing">{sport.timing}</div>
+        <div className="sport-fee">₹{sport.fees?.toLocaleString("en-IN")}</div>
+      </div>
+    </label>
+  </div>
+))}
         </div>
 
         <div className="footer-section">

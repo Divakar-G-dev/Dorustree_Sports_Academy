@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./sportslista.css";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Sportslist = () => {
   const [sports, setSports] = useState([]);
@@ -32,51 +33,71 @@ const Sportslist = () => {
   };
 
   // Add sport
-  const handleAddSport = async () => {
-    if (!newSport.name || !newSport.fees || !newSport.timing) {
-      toast.info("Fill all fields");
-      return;
-    }
-
-    if (sports.some((s) => s.name.toLowerCase() === newSport.name.toLowerCase())) {
-      toast.error("Sport already exists");
-      return;
-    }
-
-    if (!validateTimingFormat(newSport.timing)) {
-      toast.error(`Invalid timing format!\nUse format like: "6:00 AM - 7:30 AM"`);
-      return;
-    }
-
-    const conflictingSport = sports.find((s) => s.timing === newSport.timing);
-    if (conflictingSport) { 
-      const confirmAdd = window.confirm(` Time ${newSport.timing} is already used by "${conflictingSport.name}". Do you still want to add "${newSport.name}"? `); 
-      if (!confirmAdd) return; 
+ const handleAddSport = async () => {
+  if (!newSport.name || !newSport.fees || !newSport.timing) {
+    toast.info("Fill all fields");
+    return;
   }
 
+  if (sports.some((s) => s.name.toLowerCase() === newSport.name.toLowerCase())) {
+    toast.error("Sport already exists");
+    return;
+  }
 
-    try {
-      const res = await axios.post("http://localhost:8080/api/sports", {
-        name: newSport.name,
-        fees: parseInt(newSport.fees),
-        timing: newSport.timing,
-      });
-      const addedSport = { ...res.data, id: Number(res.data.id) };
-      setSports((prev) => [...prev, addedSport]);
-      setNewSport({ name: "", fees: "", timing: "" });
-      toast.success(`"${newSport.name}" added successfully!`);
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-      toast.error("Failed to add sport");
-    }
-  };
+  if (!validateTimingFormat(newSport.timing)) {
+    toast.error(`Invalid timing format!\nUse format like: "6:00 AM - 7:30 AM"`);
+    return;
+  }
+
+  const conflictingSport = sports.find((s) => s.timing === newSport.timing);
+  if (conflictingSport) { 
+    //  Fixed SweetAlert2 confirmation
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text:`Time ${newSport.timing} is already used by "${conflictingSport.name}". Do you still want to add "${newSport.name}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#f44336',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, add!',
+      cancelButtonText: 'No, cancel'
+    });
+
+    if (!result.isConfirmed) return; // stop if user clicks Cancel
+  }
+
+  
+  try {
+    const res = await axios.post("http://localhost:8080/api/sports", newSport);
+    setSports([...sports, { ...res.data, id: Number(res.data.id) }]);
+    toast.success(`${newSport.name} added successfully!`);
+    setNewSport({ name: "", fees: "", timing: "" });
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to add sport");
+  }
+};
 
   // Delete sport
-  const handleDeleteSport = async (id) => {
+  const handleDeleteSport = async (id,name) => {
+
+     const result = await Swal.fire({
+      title: 'Are you sure?',
+      text:`Do you want to delete ${name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#f44336',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete!',
+      cancelButtonText: 'No, cancel'
+    });
+
+    if (!result.isConfirmed) return;
     try {
       await axios.delete(`http://localhost:8080/api/sports/${id}`);
       setSports((prevSports) => {
         const deletedSport = prevSports.find((s) => Number(s.id) === Number(id));
+
         if (deletedSport) {
           setSelectedSports((prevSelected) =>
             prevSelected.filter((name) => name !== deletedSport.name)
@@ -123,7 +144,7 @@ const Sportslist = () => {
               <td className="fees">₹{sport.fees.toLocaleString("en-IN")}</td>
               <td>
                 <button
-                  onClick={() => handleDeleteSport(sport.id)}
+                  onClick={() => handleDeleteSport(sport.id,sport.name)}
                   className="delete-btn"
                 >
                   Delete

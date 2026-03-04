@@ -4,17 +4,17 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Frontpage from "./pages/frontpage/Frontpage.jsx";
+import Frontpage from "./LoginPath/Frontpage.jsx";
 import AppLayout from "./AppLayout.jsx";  
-import Dashboard from "./components/dashboard/Dashboard.jsx";
-import Students from "./components/studentList/Student.jsx";
-import Sports from "./components/sportsListA/Sportslist.jsx";
-import Enrollsports from "./components/enrollsports/Enrollsports.jsx";
+import Dashboard from "/src/AdminPath/pages/dashboard/Dashboard.jsx";
+import Students from "./AdminPath/pages/studentList/Student.jsx";
+import Sports from "./AdminPath/pages/sportsListA/Sportslist.jsx";
+import Enrollsports from "./AdminPath/pages/enrollsports/Enrollsports.jsx";
 import UserLayout from "./UserPath/UserLayout.jsx";
 import UserProfile from "./UserPath/pages/UserProfile/UserProfile.jsx";
 import EnrolledSports from "./UserPath/pages/EnrolledSports/EnrolledSports.jsx";
 import EditSports from "./UserPath/pages/EditSports/EditSports.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 import AboutUs from "./UserPath/pages/AboutUs/AboutUs.jsx";
 
 function App() {

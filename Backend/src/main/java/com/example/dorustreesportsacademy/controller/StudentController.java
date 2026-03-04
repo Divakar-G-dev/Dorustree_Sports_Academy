@@ -1,4 +1,5 @@
 package com.example.dorustreesportsacademy.controller;
+
 import com.example.dorustreesportsacademy.dto.SportDTO;
 import com.example.dorustreesportsacademy.dto.StudentDTO;
 import com.example.dorustreesportsacademy.entity.StudentEntity;
@@ -24,16 +25,10 @@ public class StudentController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerStudent(@RequestBody StudentDTO dto) {
-        try {
-            StudentEntity student = dto.toEntity();
-            StudentEntity saved = studentService.registerStudent(student, dto.getSportIds());
-            return ResponseEntity.ok(saved);
-        } catch (RuntimeException ex) {
-            Map<String, String> error = new HashMap<>();
-            error.put("error", ex.getMessage());
-            return ResponseEntity.badRequest().body(error);
-        }
+    public ResponseEntity<StudentEntity> registerStudent(@RequestBody StudentDTO dto) {
+        StudentEntity student = dto.toEntity();
+        StudentEntity saved = studentService.registerStudent(student, dto.getSportIds());
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping
@@ -43,16 +38,9 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
-        try {
-            StudentEntity student = studentService.getStudentById(id);
-            // FORCE LOAD SPORTS - Critical for frontend
-            if (student.getSports() != null) {
-                student.getSports().size(); // Trigger lazy loading
-            }
-            return ResponseEntity.ok(student);
-        } catch (RuntimeException ex) {
-            return ResponseEntity.status(404).build();
-        }
+        StudentEntity student = studentService.getStudentById(id);
+        if (student.getSports() != null) student.getSports().size(); // lazy load for frontend
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping("/all-sports")
@@ -71,52 +59,39 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Map<String, Object> dto) {  // get as map due to update in specific field
-        try {
-            StudentDTO studentDTO = new StudentDTO(); //Dto because it not related with db
+    public ResponseEntity<String> updateStudent(@PathVariable Long id, @RequestBody Map<String, Object> dto) {
+        StudentDTO studentDTO = new StudentDTO();
 
-            if (dto.get("firstName") != null) studentDTO.setFirstName((String) dto.get("firstName"));
-            if (dto.get("lastName") != null) studentDTO.setLastName((String) dto.get("lastName"));
-            if (dto.get("phone") != null) studentDTO.setPhone((String) dto.get("phone"));
-            if (dto.get("parentName") != null) studentDTO.setParentName((String) dto.get("parentName"));
-            if (dto.get("dob") != null) studentDTO.setDob((String) dto.get("dob"));
-            if (dto.get("emergencyContact") != null) studentDTO.setEmergencyContact((String) dto.get("emergencyContact"));
-            if (dto.get("password") != null) studentDTO.setPassword((String) dto.get("password"));
-            List<?> sportIdsList = (List<?>) dto.get("sportIds");
-            if (sportIdsList != null) {
-                Set<Long> sportIds = new HashSet<>();
-                for (Object sportId : sportIdsList) {
-                    sportIds.add(((Number) sportId).longValue()); //since dto accept sportid as long number
-                }
-                studentDTO.setSportIds(sportIds);
+        if (dto.get("firstName") != null) studentDTO.setFirstName((String) dto.get("firstName"));
+        if (dto.get("lastName") != null) studentDTO.setLastName((String) dto.get("lastName"));
+        if (dto.get("phone") != null) studentDTO.setPhone((String) dto.get("phone"));
+        if (dto.get("parentName") != null) studentDTO.setParentName((String) dto.get("parentName"));
+        if (dto.get("dob") != null) studentDTO.setDob((String) dto.get("dob"));
+        if (dto.get("emergencyContact") != null) studentDTO.setEmergencyContact((String) dto.get("emergencyContact"));
+        if (dto.get("password") != null) studentDTO.setPassword((String) dto.get("password"));
+
+        List<?> sportIdsList = (List<?>) dto.get("sportIds");
+        if (sportIdsList != null) {
+            Set<Long> sportIds = new HashSet<>();
+            for (Object sportId : sportIdsList) {
+                sportIds.add(((Number) sportId).longValue());
             }
-
-            studentService.updateStudent(id, studentDTO);
-            return ResponseEntity.ok("✅ Updated successfully");
-        } catch (RuntimeException ex) {
-            Map<String, String> error = new HashMap<>();
-            error.put("error", ex.getMessage());
-            return ResponseEntity.badRequest().body(error);
+            studentDTO.setSportIds(sportIds);
         }
+
+        studentService.updateStudent(id, studentDTO);
+        return ResponseEntity.ok("✅ Updated successfully");
     }
 
-    @DeleteMapping("/delete/{id}") //No
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
-        try {
-            studentService.deleteStudent(id);
-            return ResponseEntity.ok("Deleted successfully");
-        } catch (RuntimeException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
-        }
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok("Deleted successfully");
     }
 
-    @DeleteMapping("/delete") //No
-    public ResponseEntity<String> deleteAllStudent(){
-        try{
-            studentService.deleteAllStudent();
-            return ResponseEntity.ok("Delete all the students");
-        }catch (RuntimeException ex){
-            return ResponseEntity.status(404).body(ex.getMessage());
-        }
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteAllStudent() {
+        studentService.deleteAllStudent();
+        return ResponseEntity.ok("Deleted all students");
     }
 }

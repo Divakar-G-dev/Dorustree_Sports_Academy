@@ -67,8 +67,9 @@ function EnrollSports({ setStudents }) {
 
     if (conflict) {
       toast.error(
-        `"${sport.name}" cannot be selected. Time slot (${sport.timing}) is already taken by "${conflict.name}".`
-      );
+  `"${sport.name}" cannot be selected. Time slot (${sport.timing}) is taken by "${conflict.name}".`,
+  { autoClose: 5000, pauseOnHover: true }
+);
       return;
     }
 

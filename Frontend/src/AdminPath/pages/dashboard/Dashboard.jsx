@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StudentList from "../studentList/StudentList.jsx";
+import StudentList from "/src/AdminPath/pages/studentList/StudentList.jsx";
 import {
   PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";

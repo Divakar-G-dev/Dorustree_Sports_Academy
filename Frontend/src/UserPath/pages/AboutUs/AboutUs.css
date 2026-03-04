@@ -44,11 +44,13 @@
   padding-left: 30px;
   margin-bottom: 18px;
   color: #475569;
-  border-left: 4px solid #2563eb;
-  background: #eff6ff;
+  border-right: 4px solid #2563eb;
+  border-bottom: 3px solid #2563eb;
+  background: #dbeafe;;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
-  transition: background 0.3s ease;
+  box-shadow: 0 4px 5px #2563eb;
+  transition: 0.3s ease;
+  margin-bottom: 30px;
 }
 
 .features-list li strong {
@@ -56,7 +58,7 @@
 }
 
 .features-list li:hover {
-  background: #dbeafe;
+  background: lightcyan;
 }
 
 .closing {

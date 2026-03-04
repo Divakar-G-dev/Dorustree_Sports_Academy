@@ -46,7 +46,7 @@ public class AuthController {
                         .body(Map.of("error", "Wrong password"));
             }
 
-            // ✅ FETCH COMPLETE USER DATA including sports
+            // FETCH COMPLETE USER DATA including sports
             StudentEntity fullUser = studentService.getStudentById(user.getStudentId());
 
             String token = Base64.getEncoder().encodeToString(
@@ -98,6 +98,6 @@ public class AuthController {
                 hashedCount++;
             }
         }
-        return "✅ " + hashedCount + " passwords auto-hashed!";
+        return hashedCount + " passwords auto-hashed!";
     }
 }

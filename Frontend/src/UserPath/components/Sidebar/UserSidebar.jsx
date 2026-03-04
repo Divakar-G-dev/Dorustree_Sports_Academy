@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import BarImg from "/src/assets/Bar.png";
+import BarImg from "/src/AdminPath/assets/Bar.png";
 import "./userSidebar.css";
 
 const UserSidebar = () => {

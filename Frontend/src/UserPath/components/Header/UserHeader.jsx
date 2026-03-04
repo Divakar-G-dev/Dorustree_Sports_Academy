@@ -1,19 +1,28 @@
 import React from "react";
 import "./userHeader.css";
-import studentIcon from "/src/assets/Admin.jpg"; 
+import studentIcon from "/src/AdminPath/assets/Admin.jpg"; 
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const UserHeader = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-      const confirmed = window.confirm("Are you sure you want to logout?");
-  if (confirmed) {
-    sessionStorage.removeItem('studentData');
-    sessionStorage.removeItem('authToken');
-    window.location.href = "/";
-  }
-  };
+ const handleLogout = () => {
+             Swal.fire({
+               title: 'Are you sure?',
+               text: "You will be logged out!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#f44336',
+               cancelButtonColor: '#3085d6',
+               confirmButtonText: 'Yes, logout!'
+             }).then((result) => {
+               if (result.isConfirmed) {
+                 sessionStorage.removeItem('studentData');
+                 sessionStorage.removeItem('authToken');
+                 window.location.href = "/";
+               }
+             });
+   };
 
   return (
     <div className="user-head-section">

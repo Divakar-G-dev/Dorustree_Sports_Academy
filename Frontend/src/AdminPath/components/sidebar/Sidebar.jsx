@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
-import DashboardImg from "/src/assets/Dashboard.png";
-import EnrollImg from "/src/assets/Enroll.png";
-import SportImg from "/src/assets/Mysport.png";
-import StudentImg from "/src/assets/student.png";
-import BarImg from "/src/assets/Bar.png";
+import DashboardImg from "/src/AdminPath/assets/Dashboard.png";
+import EnrollImg from "/src/AdminPath/assets/Enroll.png";
+import SportImg from "/src/AdminPath/assets/Mysport.png";
+import StudentImg from "/src/AdminPath/assets/student.png";
+import BarImg from "/src/AdminPath/assets/Bar.png";
 
 function Sidebar() {
   return (

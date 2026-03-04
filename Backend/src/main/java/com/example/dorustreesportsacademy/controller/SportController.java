@@ -19,27 +19,19 @@ public class SportController {
         this.sportService = sportService;
     }
 
-    // Get all sports
     @GetMapping
     public ResponseEntity<List<SportEntity>> getAllSports() {
         return ResponseEntity.ok(sportService.getAllSports());
     }
-
-
     @PostMapping
     public ResponseEntity<SportEntity> addSport(@RequestBody SportEntity sport) {
         SportEntity saved = sportService.addSport(sport);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSport(@PathVariable Long id) {
-        try {
-            sportService.deleteSport(id);
-            return ResponseEntity.ok("Sport deleted successfully");
-        } catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        sportService.deleteSport(id);
+        return ResponseEntity.ok("Sport deleted successfully");
     }
 }

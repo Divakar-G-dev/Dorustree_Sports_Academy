@@ -52,8 +52,7 @@ function Dashboard() {
     name,
     value,
   }));
-
-  const COLORS = ["#4171c9", "#63c933", "#e99312", "#ff4d4d", "#9c27b0", "#00bcd4"];
+  const getColor = (index) => `hsl(${index * 30}, 75%, 45%)`;
   const totalCollected = Object.values(collectedSummary).reduce((sum, val) => sum + val, 0, 0);
 
   if (loading) {
@@ -130,7 +129,7 @@ function Dashboard() {
                     label
                   >
                     {chartArray.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell key={index} fill={getColor(index)} />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -154,7 +153,7 @@ function Dashboard() {
                       <td>
                         <span
                           className="color-box"
-                          style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                          style={{ backgroundColor: getColor(index) }}
                         ></span>
                         {item.name}
                       </td>

@@ -16,20 +16,20 @@
 
 .box {
   flex: 1 1 calc(25% - 15px);
-  min-width: 160px;              /* 🔥 Slightly wider */
+  min-width: 160px;              /* Slightly wider */
   display: flex;
   align-items: center;
   background-color: #f8f9fa;
-  padding: 0.8rem 1.2rem;        /* 🔥 More padding */
+  padding: 0.8rem 1.2rem;        /* More padding */
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   transition: transform 0.2s;
 }
 
 .box-left {
-  width: 65px;                   /* 🔥 Slightly wider */
+  width: 65px;                   /*  Slightly wider */
   height: 60px;
-  font-size: 1.1rem !important;  /* 🔥 Smaller & fits */
+  font-size: 1.1rem !important;  /* Smaller & fits */
   font-weight: 700;
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@
 }
 
 .box-right h2 {
-  font-size: 0.95rem;            /* 🔥 Slightly smaller */
+  font-size: 0.95rem;            /*  Slightly smaller */
   margin: 0;
   color: #333;
   font-weight: 600;
@@ -74,7 +74,7 @@
   border-radius: 12px;
 }
 
-/* 🔥 SMALL DASHBOARD STUDENT TABLE */
+/* SMALL DASHBOARD STUDENT TABLE */
 .dashboard-student-table {
   max-height: 350px;
   overflow-y: auto;

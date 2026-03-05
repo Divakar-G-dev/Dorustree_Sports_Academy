@@ -24,7 +24,7 @@ function App() {
 
         {/* Global Toast Container */}
         <ToastContainer 
-          position="top-right"
+          position="top-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop
@@ -36,7 +36,6 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Frontpage />} />
-
           <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />

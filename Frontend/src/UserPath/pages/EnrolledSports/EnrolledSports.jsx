@@ -34,7 +34,7 @@ const EnrolledSports = () => {
               <tbody>
                 {studentData.enrolledSports.map((sport) => (
                   <tr key={sport.id} className="table-row">
-                    <td className="table-cell sport-name">{sport.name}</td>
+                    <td className="table-cell sport-name" style={{fontWeight:"500",fontSize:"16px"}}>{sport.name}</td>
                     <td className="table-cell">{sport.timing}</td>
                     <td className="table-cell">1 hr 30 mins</td>
                     <td className="table-cell money-cell">₹{sport.fees.toLocaleString("en-IN")}</td>

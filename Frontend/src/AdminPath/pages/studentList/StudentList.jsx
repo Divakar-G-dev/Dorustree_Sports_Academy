@@ -35,7 +35,7 @@ const StudentList = ({ students = [], showTotalFees = false }) => {
                 <td className="student-name">{`${student.firstName || ''} ${student.lastName || ''}`.trim() || 'N/A'}</td>
                 <td className="phone-num">{student.phone || 'N/A'}</td>
                 <td className="sports-names">{sportsNames}</td>
-                {showTotalFees && <td className="total-fees">₹{totalFees.toLocaleString("en-IN")}</td>}
+                {showTotalFees && <td className="total-fees" style={{textAlign:"left"}}>₹{totalFees.toLocaleString("en-IN")}</td>}
               </tr>
             );
           })

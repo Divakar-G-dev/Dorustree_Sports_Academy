@@ -152,7 +152,6 @@ function Frontpage() {
               required
               style={{
                 width: "100%",
-                height: "1px",
                 padding: "12px 16px",
                 fontSize: "16px",
                 border: "2px solid #e5e7eb",

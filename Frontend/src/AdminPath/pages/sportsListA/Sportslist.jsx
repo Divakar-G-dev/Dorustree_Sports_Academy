@@ -150,6 +150,9 @@ const Sportslist = () => {
               placeholder="6:00 AM - 7:30 AM"
               value={newSport.timing}
               onChange={e => setNewSport({ ...newSport, timing: e.target.value })}
+              pattern="^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)\s*-\s*(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)$"
+              title='Please follow the format "6:00 AM - 7:30 AM"'
+              required
             />
             <div className="format-warning">
               {!validateTimingFormat(newSport.timing) && newSport.timing

@@ -170,7 +170,7 @@
 
 .save-button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgb(146, 143, 143);
+  box-shadow: 0 6px 20px rgb(98, 156, 223);
   
 }
 

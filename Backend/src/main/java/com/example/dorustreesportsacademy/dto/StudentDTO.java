@@ -8,8 +8,8 @@ import java.util.Set;
 public class StudentDTO {
     private String firstName;
     private String lastName;
-    private String googleEmail;        // ✅ NEW: Admin enters Gmail for OAuth
-    private String email;              // ✅ Backend maps googleEmail → email
+    private String googleEmail;        // NEW: Admin enters Gmail for OAuth
+    private String email;              // Backend maps googleEmail → email
     private String phone;
     private String parentName;
     private String emergencyContact;
@@ -30,7 +30,6 @@ public class StudentDTO {
         s.setDob(java.time.LocalDate.parse(dob));
         s.setPassword(password);  // Optional for OAuth users
         s.setRole("Student");     // Default role
-
         return s;
     }
 }
